@@ -1,0 +1,40 @@
+{
+  "name": "create-effector",
+  "version": "0.1.0",
+  "description": "Scaffold a new Effector project — skills, extensions, workflows, and more",
+  "bin": {
+    "create-effector": "./bin/create-effector.js"
+  },
+  "main": "./src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/",
+    "lint": "node --check src/**/*.js bin/*.js"
+  },
+  "keywords": [
+    "effector",
+    "effectorhq",
+    "openclaw",
+    "scaffold",
+    "generator",
+    "skill",
+    "ai-agent",
+    "mcp"
+  ],
+  "author": "effectorHQ Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/effectorHQ/create-effector.git"
+  },
+  "homepage": "https://github.com/effectorHQ/create-effector",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "LICENSE",
+    "README.md"
+  ]
+}
