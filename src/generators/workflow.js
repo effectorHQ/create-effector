@@ -11,10 +11,10 @@ export function generateWorkflow({ name, runtime }) {
     'pipeline.yml': `# ${titleName} — Lobster Workflow Pipeline
 #
 # A deterministic, resumable pipeline that chains skill Effectors.
-# Docs: https://docs.openclaw.dev/lobster
+# Docs: https://github.com/effectorHQ/docs
 
 name: ${name}
-description: "TODO: Describe what this workflow automates"
+description: "Automate a prepare-execute-notify pipeline"
 version: "0.1.0"
 
 # Variables — override at runtime with \`openclaw pipeline run ${name} --set KEY=VALUE\`
@@ -33,8 +33,8 @@ steps:
 
   # Step 2: Main action
   - name: execute
-    skill: TODO-your-skill
-    description: "TODO: Describe the main action"
+    skill: ${name}
+    description: "Process the gathered context"
     params:
       input: "\${prepare_result.output}"
       environment: "\${ENVIRONMENT}"
@@ -66,10 +66,10 @@ steps:
 
 [![CI](https://github.com/effectorHQ/${name}/actions/workflows/ci.yml/badge.svg)](https://github.com/effectorHQ/${name}/actions)
 [![Effector Type: Workflow](https://img.shields.io/badge/effector-workflow-orange)](https://github.com/effectorHQ/effector-spec)
-[![Lobster](https://img.shields.io/badge/powered%20by-Lobster-blue)](https://docs.openclaw.dev/lobster)
+[![Lobster](https://img.shields.io/badge/powered%20by-Lobster-blue)](https://github.com/effectorHQ/docs)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-An [Effector](https://github.com/effectorHQ/effector-spec) workflow that TODO: describe the automation.
+An [Effector](https://github.com/effectorHQ/effector-spec) workflow that automates a prepare-execute-notify pipeline.
 
 ## Usage
 
@@ -89,7 +89,7 @@ openclaw pipeline run ${name} --set ENVIRONMENT=production --set NOTIFY_CHANNEL=
 | Step | Skill | Description |
 |------|-------|-------------|
 | prepare | git-operations | Gather context |
-| execute | TODO | Main action |
+| execute | ${name} | Process gathered context |
 | notify | slack-notify | Completion notification |
 
 ## Customization

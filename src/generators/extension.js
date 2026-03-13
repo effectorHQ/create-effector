@@ -1,7 +1,7 @@
 /**
  * Extension Effector generator
  *
- * Generates a TypeScript extension with OpenClaw Plugin SDK structure.
+ * Generates a TypeScript extension with Plugin SDK structure.
  */
 
 export function generateExtension({ name, runtime }) {
@@ -10,10 +10,10 @@ export function generateExtension({ name, runtime }) {
 
   return {
     'src/index.ts': `/**
- * ${titleName} — OpenClaw Extension
+ * ${titleName} — Extension
  *
- * This extension registers with the OpenClaw Plugin SDK
- * to provide TODO: describe what it provides.
+ * This extension registers with the Plugin SDK
+ * to provide timestamped greeting responses.
  */
 
 interface OpenClawPluginApi {
@@ -40,24 +40,22 @@ export function register(api: OpenClawPluginApi) {
 
   logger.info('${titleName} extension loaded');
 
-  // Register actions
   api.registerAction({
     name: '${camelName}',
-    description: 'TODO: Describe the action',
+    description: 'Greet the user with a timestamped message',
     execute: async (input) => {
-      logger.info('Executing ${camelName}', input);
-
-      // TODO: Implement your extension logic here
+      const greeting = input?.name ? \`Hello, \${input.name}!\` : 'Hello from ${titleName}!';
+      const timestamp = new Date().toISOString();
+      logger.info(\`Executed ${camelName}: \${greeting}\`);
       return {
         success: true,
-        result: 'TODO: Return meaningful results',
+        result: { greeting, timestamp, extension: '${name}' },
       };
     },
   });
 
-  // Register lifecycle hooks (optional)
   api.on('message', (event) => {
-    // TODO: React to messages if needed
+    logger.info(\`[${name}] Received message event\`);
   });
 }
 `,
@@ -84,7 +82,7 @@ export function register(api: OpenClawPluginApi) {
     'package.json': `{
   "name": "@effectorhq/${name}",
   "version": "0.1.0",
-  "description": "TODO: Describe this extension",
+  "description": "A starter extension that responds with timestamped greetings",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -92,7 +90,7 @@ export function register(api: OpenClawPluginApi) {
     "test": "node --test tests/",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["effector", "effectorhq", "openclaw", "extension"],
+  "keywords": ["effector", "effectorhq", "extension"],
   "author": "effectorHQ Contributors",
   "license": "MIT",
   "devDependencies": {
@@ -111,7 +109,7 @@ export function register(api: OpenClawPluginApi) {
 [![Effector Type: Extension](https://img.shields.io/badge/effector-extension-purple)](https://github.com/effectorHQ/effector-spec)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-An [Effector](https://github.com/effectorHQ/effector-spec) extension that TODO: describe what it provides.
+An [Effector](https://github.com/effectorHQ/effector-spec) extension that responds with timestamped greetings. Use as a starting point for building real extensions.
 
 ## Installation
 

@@ -171,7 +171,7 @@ function generateManifest({ name, type, runtime }) {
 name = "${name}"
 version = "0.1.0"
 type = "${type}"
-description = "TODO: Describe what this ${type} does"
+description = "A starter ${type} effector. Replace this description with what yours does."
 license = "MIT"
 emoji = "${typeEmoji(type)}"
 tags = []

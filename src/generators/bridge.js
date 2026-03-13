@@ -12,7 +12,7 @@ export function generateBridge({ name, runtime }) {
  * ${titleName} — Bridge Adapter
  *
  * Translates capabilities from the source runtime to the target runtime.
- * This is a minimal template — extend it for your specific bridge.
+ * This starter bridge echoes input via JSON-RPC over stdio.
  */
 
 import { createInterface } from 'node:readline';
@@ -20,35 +20,33 @@ import { createInterface } from 'node:readline';
 /**
  * Read an Effector from the source format and return a target-format definition.
  *
- * @param {string} sourcePath - Path to the source Effector (e.g., SKILL.md)
+ * @param {string} sourceName - Name of the source Effector
  * @returns {object} Target runtime tool/capability definition
  */
-export function translate(sourcePath) {
-  // TODO: Implement format translation
-  // Example: Read SKILL.md → produce MCP tool JSON
+export function translate(sourceName) {
   return {
-    name: 'TODO',
-    description: 'TODO: Translated capability',
+    name: sourceName || '${name}',
+    description: 'Bridged capability from ' + (sourceName || '${name}'),
     inputSchema: {
       type: 'object',
-      properties: {},
+      properties: {
+        message: { type: 'string', description: 'Input message to process' },
+      },
     },
   };
 }
 
 /**
- * Start the bridge server (for stdio-based transports).
+ * Start the bridge server (stdio-based JSON-RPC transport).
  *
  * Reads JSON-RPC messages from stdin, dispatches to translated capabilities,
  * writes responses to stdout.
  */
 export async function serve(directory) {
   const rl = createInterface({ input: process.stdin });
+  const tool = translate('${name}');
 
-  // TODO: Initialize — scan directory for source Effectors
-  // TODO: Translate each into target format
-  // TODO: Handle incoming JSON-RPC requests
-
+  // Send server info on startup
   process.stdout.write(JSON.stringify({
     jsonrpc: '2.0',
     result: {
@@ -61,12 +59,27 @@ export async function serve(directory) {
   for await (const line of rl) {
     try {
       const msg = JSON.parse(line);
-      // TODO: Route to appropriate handler
-      process.stdout.write(JSON.stringify({
-        jsonrpc: '2.0',
-        id: msg.id,
-        result: { content: [{ type: 'text', text: 'TODO: Implement' }] },
-      }) + '\\n');
+
+      if (msg.method === 'tools/list') {
+        process.stdout.write(JSON.stringify({
+          jsonrpc: '2.0',
+          id: msg.id,
+          result: { tools: [tool] },
+        }) + '\\n');
+      } else if (msg.method === 'tools/call') {
+        const input = msg.params?.arguments?.message || 'no input';
+        process.stdout.write(JSON.stringify({
+          jsonrpc: '2.0',
+          id: msg.id,
+          result: { content: [{ type: 'text', text: '[${name}] ' + input }] },
+        }) + '\\n');
+      } else {
+        process.stdout.write(JSON.stringify({
+          jsonrpc: '2.0',
+          id: msg.id,
+          error: { code: -32601, message: 'Method not found: ' + msg.method },
+        }) + '\\n');
+      }
     } catch (err) {
       process.stderr.write(\`Bridge error: \${err.message}\\n\`);
     }
@@ -82,7 +95,7 @@ if (process.argv[2] === 'serve') {
     'package.json': `{
   "name": "@effectorhq/${name}",
   "version": "0.1.0",
-  "description": "TODO: Describe this bridge",
+  "description": "A starter bridge that echoes input via JSON-RPC over stdio",
   "main": "src/adapter.js",
   "type": "module",
   "bin": {
@@ -108,7 +121,7 @@ if (process.argv[2] === 'serve') {
 [![Effector Type: Bridge](https://img.shields.io/badge/effector-bridge-yellow)](https://github.com/effectorHQ/effector-spec)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-An [Effector](https://github.com/effectorHQ/effector-spec) bridge that TODO: describe what ecosystems it connects.
+An [Effector](https://github.com/effectorHQ/effector-spec) bridge that connects runtimes via JSON-RPC over stdio. Use as a starting point for building real bridges.
 
 ## Usage
 

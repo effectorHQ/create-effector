@@ -11,7 +11,7 @@ export function generateSkill({ name, runtime }) {
   return {
     'SKILL.md': `---
 name: ${name}
-description: "TODO: What this skill does and when the agent should use it."
+description: "Echo back user input with metadata. A starter skill to verify your setup works."
 metadata:
   openclaw:
     emoji: 🎯
@@ -23,21 +23,24 @@ metadata:
 
 ## Purpose
 
-TODO: Describe what this skill enables the agent to do.
+${titleName} is a starter skill that echoes user input back with timestamp and context. Use it to verify your workspace is configured correctly, or as a starting point for a new skill.
 
 ## When to Use
 
-- TODO: Specific scenarios where this skill is appropriate
+- Testing that skills load and respond correctly
+- Verifying your workspace configuration after setup
+- As a template base for building a real skill
 
 ## When NOT to Use
 
-- TODO: Scenarios where this skill should not be used
+- In production workflows (replace with a real skill)
+- When you need external API access (add requirements first)
 
 ## Setup
 
 ### Prerequisites
 
-TODO: List any tools, API keys, or configuration needed.
+No external tools or API keys required.
 
 ### Installation
 
@@ -51,29 +54,43 @@ cp -r . ~/.openclaw/workspace/skills/${name}/
 
 ## Commands
 
-### \`command-name\`
+### \`echo\`
 
-TODO: Document each command or action the agent can take.
+Repeats the user's input with a timestamp.
 
 **Example:**
 
-\`\`\`bash
-# TODO: Add a real example
+\`\`\`
+User: "Say hello"
+Agent: [${name}] hello (at 2024-01-15T10:30:00Z)
+\`\`\`
+
+### \`status\`
+
+Prints the skill's name and version to confirm it is loaded.
+
+\`\`\`
+User: "Is ${name} working?"
+Agent: ${name} v0.1.0 is active.
 \`\`\`
 
 ## Examples
 
-### Example 1: Basic Usage
+### Example 1: Basic Echo
 
-TODO: Provide a complete, working example.
+User: "Say hello"
+Agent uses the echo command to respond: "[${name}] hello (at <timestamp>)"
 
-### Example 2: Advanced Usage
+### Example 2: Health Check
 
-TODO: Provide a more complex example.
+User: "Is ${name} working?"
+Agent runs the status command: "${name} v0.1.0 is active."
 
 ## Notes
 
-- TODO: Limitations, security considerations, troubleshooting tips
+- This is a starter skill with no external dependencies
+- Replace this content with your real skill logic
+- See https://github.com/effectorHQ/linear-skill for a production example
 `,
 
     'README.md': `# ${titleName}
@@ -83,7 +100,7 @@ TODO: Provide a more complex example.
 [![Effector Type: Skill](https://img.shields.io/badge/effector-skill-blue)](https://github.com/effectorHQ/effector-spec)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-An [Effector](https://github.com/effectorHQ/effector-spec) skill that TODO: describe what it does.
+An [Effector](https://github.com/effectorHQ/effector-spec) skill that echoes user input with metadata. Use as a starting point for building real skills.
 
 ## Quick Start
 

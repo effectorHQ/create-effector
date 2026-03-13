@@ -12,7 +12,7 @@ export function generatePrompt({ name, runtime }) {
 
 {{#system}}
 
-You are an expert at TODO: define the domain.
+You are an expert at reviewing and summarizing content.
 
 ## Context
 
@@ -20,16 +20,29 @@ You are an expert at TODO: define the domain.
 
 ## Task
 
-TODO: Define what the agent should do with this prompt.
+Given the context above, provide a concise summary highlighting:
+1. Key points and decisions
+2. Action items (if any)
+3. Questions that remain open
 
 ## Constraints
 
-- TODO: Constraint 1
-- TODO: Constraint 2
+- Keep the summary under 200 words
+- Use bullet points for action items
+- Flag anything that seems unclear or contradictory
 
 ## Output Format
 
-TODO: Describe the expected output format.
+**Summary:** <1-2 sentence overview>
+
+**Key Points:**
+- ...
+
+**Action Items:**
+- [ ] ...
+
+**Open Questions:**
+- ...
 
 {{/system}}
 `,
@@ -39,13 +52,13 @@ TODO: Describe the expected output format.
 [![Effector Type: Prompt](https://img.shields.io/badge/effector-prompt-pink)](https://github.com/effectorHQ/effector-spec)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-An [Effector](https://github.com/effectorHQ/effector-spec) prompt template for TODO: describe the use case.
+An [Effector](https://github.com/effectorHQ/effector-spec) prompt template for generating concise content summaries.
 
 ## Variables
 
 | Variable | Type | Description |
 |----------|------|-------------|
-| \`context\` | string | TODO: Describe this variable |
+| \`context\` | string | The content to review and summarize |
 
 ## Usage
 
