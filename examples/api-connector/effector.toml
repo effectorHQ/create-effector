@@ -1,0 +1,15 @@
+[effector]
+name = "api-connector"
+version = "1.0.0"
+type = "skill"
+description = "Example skill demonstrating API integration patterns"
+
+[effector.interface]
+input = "String"
+output = "JSON"
+context = ["GenericAPIKey"]
+
+[effector.permissions]
+network = true
+subprocess = false
+envRead = ["API_KEY", "API_ENDPOINT"]

@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/create-effector.svg)](https://www.npmjs.com/package/create-effector)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Effector Spec](https://img.shields.io/badge/spec-0.1.0-blue)](https://github.com/effectorHQ/effector-spec)
+[![Effector Spec](https://img.shields.io/badge/spec-0.2.0-blue)](https://github.com/effectorHQ/effector-spec)
 
 **[中文文档 →](./README.zh.md)**
 
@@ -166,6 +166,17 @@ my-prompt/
 5. Initializes a git repository
 
 No network requests. No dependencies to install. Everything runs with Node.js built-ins.
+
+## Example Skills
+
+The `examples/` directory contains reference skills you can study:
+
+- **`examples/hello-world/`** — Simplest possible skill with no dependencies
+- **`examples/api-connector/`** — API integration skill with env vars, curl, and typed interface
+
+Each example includes both `SKILL.md` and `effector.toml` to demonstrate proper structure.
+
+For a production-quality reference, see [linear-skill](https://github.com/effectorHQ/linear-skill).
 
 ## Contributing
 

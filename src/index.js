@@ -167,6 +167,8 @@ function generateManifest({ name, type, runtime }) {
     ? generateMCPBinding(name)
     : generateGenericBinding();
 
+  const interfaceBlock = generateInterface(type);
+
   return `[effector]
 name = "${name}"
 version = "0.1.0"
@@ -176,16 +178,61 @@ license = "MIT"
 emoji = "${typeEmoji(type)}"
 tags = []
 authors = []
-min-spec-version = "0.1.0"
+min-spec-version = "0.2.0"
 
 [effector.categories]
 primary = "developer-tools"
-
+${interfaceBlock}
 [effector.permissions]
 network = false
 subprocess = false
 
 ${runtimeBlock}`;
+}
+
+function generateInterface(type) {
+  switch (type) {
+    case 'skill':
+      return `
+[effector.interface]
+input = "String"
+output = "String"
+context = []
+`;
+    case 'extension':
+      return `
+[effector.interface]
+input = "JSON"
+output = "JSON"
+context = []
+`;
+    case 'workflow':
+      return `
+[effector.interface]
+input = "RepositoryRef"
+output = "OperationStatus"
+context = []
+`;
+    case 'bridge':
+      return `
+[effector.interface]
+input = "String"
+output = "JSON"
+context = []
+`;
+    case 'prompt':
+      return `
+[effector.interface]
+input = "String"
+output = "Markdown"
+context = []
+`;
+    case 'workspace':
+      // Workspaces don't have I/O interface
+      return '\n';
+    default:
+      return '\n';
+  }
 }
 
 function typeEmoji(type) {

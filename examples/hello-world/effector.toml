@@ -1,0 +1,10 @@
+[effector]
+name = "hello-world"
+version = "1.0.0"
+type = "skill"
+description = "A simple example skill with no dependencies"
+
+[effector.interface]
+input = "String"
+output = "String"
+context = []
