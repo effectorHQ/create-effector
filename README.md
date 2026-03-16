@@ -1,6 +1,7 @@
 # create-effector
 
 [![npm version](https://img.shields.io/npm/v/create-effector.svg)](https://www.npmjs.com/package/create-effector)
+[![CI](https://github.com/effectorHQ/create-effector/actions/workflows/test.yml/badge.svg)](https://github.com/effectorHQ/create-effector/actions/workflows/test.yml)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Effector Spec](https://img.shields.io/badge/spec-0.2.0-blue)](https://github.com/effectorHQ/effector-spec)
@@ -14,6 +15,21 @@ Scaffold a new [Effector](https://github.com/effectorHQ/effector-spec) project i
 ```bash
 npx create-effector my-skill --type skill
 ```
+
+## Install
+
+```bash
+npm install -g @effectorhq/create-effector
+```
+
+You can also use the CLI directly without installing globally:
+
+```bash
+npx @effectorhq/create-effector my-skill
+npx @effectorhq/create-effector my-workspace --type workspace
+```
+
+See the published package on npm: **https://www.npmjs.com/package/@effectorhq/create-effector**
 
 ## What It Does
 
