@@ -13,7 +13,7 @@
 Scaffold a new [Effector](https://github.com/effectorHQ/effector-spec) project in 30 seconds. Zero dependencies.
 
 ```bash
-npx create-effector my-skill --type skill
+npx @effectorhq/create-effector my-skill --type skill
 ```
 
 ## Install
@@ -40,7 +40,7 @@ Generates the correct project structure for any Effector type — manifest, entr
 ### Interactive Mode
 
 ```bash
-npx create-effector
+npx @effectorhq/create-effector
 ```
 
 Walks you through name, type, runtime, and directory selection.
@@ -48,29 +48,29 @@ Walks you through name, type, runtime, and directory selection.
 ### Direct Mode
 
 ```bash
-npx create-effector <name> --type <type> [--runtime <runtime>]
+npx @effectorhq/create-effector <name> --type <type> [--runtime <runtime>]
 ```
 
 ### Examples
 
 ```bash
 # Skill — SKILL.md instructions for a CLI tool
-npx create-effector github-pr-review --type skill
+npx @effectorhq/create-effector github-pr-review --type skill
 
 # Extension — TypeScript plugin for the runtime SDK
-npx create-effector telegram-bot --type extension
+npx @effectorhq/create-effector telegram-bot --type extension
 
 # Workflow — Lobster pipeline chaining skills
-npx create-effector deploy-pipeline --type workflow
+npx @effectorhq/create-effector deploy-pipeline --type workflow
 
 # Workspace — Agent persona bundle (SOUL.md, AGENTS.md, etc.)
-npx create-effector devops-agent --type workspace
+npx @effectorhq/create-effector devops-agent --type workspace
 
 # Bridge — Cross-runtime adapter (e.g., OpenClaw → MCP)
-npx create-effector openclaw-langchain --type bridge
+npx @effectorhq/create-effector openclaw-langchain --type bridge
 
 # Prompt — Reusable prompt template with variables
-npx create-effector review-template --type prompt
+npx @effectorhq/create-effector review-template --type prompt
 ```
 
 ## Generated Structure
