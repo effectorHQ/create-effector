@@ -64,14 +64,6 @@ An [Effector](https://github.com/effectorHQ/effector-spec) prompt template for g
 
 This prompt template is injected by the runtime at the appropriate context point. Variables are resolved at invocation time.
 
-### With OpenClaw
-
-Place in your workspace's \`prompts/\` directory:
-
-\`\`\`bash
-cp prompt.md ~/.openclaw/workspace/prompts/${name}.md
-\`\`\`
-
 ### Standalone
 
 Use the template variables syntax (\`{{variable}}\`) and resolve them in your application code.

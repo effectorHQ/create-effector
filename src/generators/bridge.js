@@ -1,7 +1,7 @@
 /**
  * Bridge Effector generator
  *
- * Generates a cross-runtime adapter (e.g., OpenClaw → MCP).
+ * Generates a cross-runtime adapter (e.g., manifest → MCP).
  */
 
 export function generateBridge({ name, runtime }) {

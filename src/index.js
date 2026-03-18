@@ -99,13 +99,19 @@ export async function createEffector(config) {
 function nextSteps(type) {
   switch (type) {
     case 'skill':
-      return 'Edit SKILL.md with your skill instructions\n    npx @effectorhq/skill-lint SKILL.md    # Validate';
+      return [
+        'Edit SKILL.md with your skill instructions',
+        'npx @effectorhq/skill-lint SKILL.md          # 1) Lint',
+        'npx @effectorhq/skill-eval . --static-only   # 2) Eval (static-only)',
+        'npx effector-core validate .                  # 3) Validate manifest',
+        'npx effector-core compile . -t mcp            # 4) Compile to MCP',
+      ].join('\n    ');
     case 'extension':
       return 'npm install\n    Edit src/index.ts with your extension logic\n    npm run build';
     case 'workflow':
-      return 'Edit pipeline.yml with your workflow steps\n    openclaw pipeline validate pipeline.yml';
+      return 'Edit pipeline.yml with your workflow steps\n    Validate your effector.toml + SKILL.md (if any) with effector-core';
     case 'workspace':
-      return 'Edit SOUL.md with your agent personality\n    cp -r . ~/.openclaw/workspace/    # Install locally';
+      return 'Edit SOUL.md with your agent personality\n    Commit the workspace files alongside your project';
     case 'bridge':
       return 'npm install\n    Edit src/adapter.js with your bridge logic\n    npm test';
     case 'prompt':
@@ -186,6 +192,9 @@ ${interfaceBlock}
 [effector.permissions]
 network = false
 subprocess = false
+env-read = []
+env-write = []
+filesystem = []
 
 ${runtimeBlock}`;
 }
@@ -249,10 +258,7 @@ entry = "SKILL.md"
 [runtime.openclaw.requires]
 bins = []
 env = []
-
-[runtime.openclaw.publish]
-registry = "clawhub"
-tier = "managed"`;
+`;
 
     case 'extension':
       return `[runtime.openclaw]
@@ -326,7 +332,16 @@ function generateCI({ name, type }) {
       - name: Lint SKILL.md
         uses: effectorHQ/skill-lint-action@v1
         with:
-          path: SKILL.md` : '';
+          path: SKILL.md
+
+      - name: Evaluate (static-only)
+        run: npx @effectorhq/skill-eval . --static-only
+
+      - name: Validate manifest
+        run: npx effector-core validate .
+
+      - name: Compile to MCP
+        run: npx effector-core compile . -t mcp > /dev/null` : '';
 
   const buildStep = ['extension', 'bridge'].includes(type) ? `
       - name: Install dependencies

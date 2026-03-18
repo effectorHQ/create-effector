@@ -12,7 +12,7 @@ export function parseArgs(argv) {
     args: argv,
     options: {
       type: { type: 'string', short: 't' },
-      runtime: { type: 'string', short: 'r', default: 'openclaw' },
+      runtime: { type: 'string', short: 'r', default: 'mcp' },
       dir: { type: 'string', short: 'd' },
       'no-git': { type: 'boolean', default: false },
     },
@@ -45,7 +45,7 @@ export function parseArgs(argv) {
     );
   }
 
-  const runtime = values.runtime || 'openclaw';
+  const runtime = values.runtime || 'mcp';
   if (!VALID_RUNTIMES.includes(runtime)) {
     throw new Error(
       `Invalid runtime "${runtime}". Must be one of: ${VALID_RUNTIMES.join(', ')}`

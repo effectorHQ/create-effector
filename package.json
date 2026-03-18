@@ -1,6 +1,6 @@
 {
-  "name": "create-effector",
-  "version": "0.1.0",
+  "name": "@effectorhq/create-effector",
+  "version": "1.0.0",
   "description": "Scaffold a new Effector project — skills, extensions, workflows, and more",
   "bin": {
     "create-effector": "./bin/create-effector.js"
@@ -27,6 +27,9 @@
     "url": "https://github.com/effectorHQ/create-effector.git"
   },
   "homepage": "https://github.com/effectorHQ/create-effector",
+  "bugs": {
+    "url": "https://github.com/effectorHQ/create-effector/issues"
+  },
   "engines": {
     "node": ">=18"
   },

@@ -2,7 +2,7 @@
  * Golden Path Test
  *
  * Exercises the full effector toolchain end-to-end:
- *   create-effector → skill-lint → validate-manifest → skill-eval → openclaw-mcp compile → serve
+ *   create-effector → skill-lint → validate-manifest → skill-eval → effector-core compile → serve
  *
  * This is the canonical integration test for the effector ecosystem.
  */
@@ -121,16 +121,17 @@ test('golden path: skill-eval grades generated skill A or B', async () => {
   }
 });
 
-// ── Step 5: openclaw-mcp compile ────────────────────────────
+// ── Step 5: effector-core compile ───────────────────────────
 
-test('golden path: openclaw-mcp compile produces valid MCP tool', async () => {
+test('golden path: effector-core compile produces valid MCP tool', async () => {
   const dir = await createTempSkill();
   try {
-    const { compileSkill } = await import(
-      path.join(CORE_ROOT, 'openclaw-mcp', 'src', 'compiler.js')
+    const { Effector } = await import(
+      path.join(CORE_ROOT, 'effector-core', 'src', 'index.js')
     );
 
-    const tool = await compileSkill(dir);
+    const compiled = Effector.fromDir(dir).compile('mcp');
+    const tool = JSON.parse(compiled);
 
     assert.strictEqual(tool.name, 'golden_test');
     assert.ok(tool.description);
@@ -138,8 +139,6 @@ test('golden path: openclaw-mcp compile produces valid MCP tool', async () => {
     assert.ok(tool._interface, 'has typed interface');
     assert.strictEqual(tool._interface.input, 'String');
     assert.strictEqual(tool._interface.output, 'String');
-    assert.ok(tool._skillContent, 'has skill content for instruction passthrough');
-    assert.ok(tool._skillContent.includes('## Purpose'), 'content has Purpose section');
   } finally {
     await cleanup(dir);
   }
@@ -218,9 +217,9 @@ test('golden path: end-to-end chain summary', async () => {
     const evalResult = analyzeStatic(dir);
     assert.ok(evalResult.score >= 0.8);
 
-    // 5. Compile
-    const { compileSkill } = await import(path.join(CORE_ROOT, 'openclaw-mcp', 'src', 'compiler.js'));
-    const tool = await compileSkill(dir);
+    // 5. Compile (core)
+    const { Effector } = await import(path.join(CORE_ROOT, 'effector-core', 'src', 'index.js'));
+    const tool = JSON.parse(Effector.fromDir(dir).compile('mcp'));
     assert.ok(tool._interface);
 
     // 6. Serve

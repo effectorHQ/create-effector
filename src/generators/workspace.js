@@ -141,8 +141,8 @@ An [Effector](https://github.com/effectorHQ/effector-spec) workspace that config
 ## Installation
 
 \`\`\`bash
-cp -r . ~/.openclaw/workspace/
-openclaw restart
+# Copy these files into your project's workspace/config directory,
+# then point your runtime to them.
 \`\`\`
 
 ## Files

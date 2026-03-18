@@ -16,7 +16,7 @@ export function generateExtension({ name, runtime }) {
  * to provide timestamped greeting responses.
  */
 
-interface OpenClawPluginApi {
+interface RuntimePluginApi {
   registerAction(action: ActionDefinition): void;
   on(event: string, handler: (event: any) => void): void;
   getConfig<T>(schema: object): T;
@@ -35,7 +35,7 @@ interface Logger {
   error(msg: string, ...args: any[]): void;
 }
 
-export function register(api: OpenClawPluginApi) {
+export function register(api: RuntimePluginApi) {
   const logger = api.getLogger('${name}');
 
   logger.info('${titleName} extension loaded');

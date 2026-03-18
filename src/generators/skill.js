@@ -11,9 +11,15 @@ export function generateSkill({ name, runtime }) {
   return {
     'SKILL.md': `---
 name: ${name}
-description: "Echo back user input with metadata. A starter skill to verify your setup works."
+description: "A starter effector skill with a typed interface, examples, and a verifiable golden path (lint → eval → validate → compile)."
 metadata:
   openclaw:
+    emoji: 🎯
+    requires:
+      bins: []
+      env: []
+    install: []
+  effector:
     emoji: 🎯
     requires:
       bins: []
@@ -23,18 +29,18 @@ metadata:
 
 ## Purpose
 
-${titleName} is a starter skill that echoes user input back with timestamp and context. Use it to verify your workspace is configured correctly, or as a starting point for a new skill.
+${titleName} is a starter skill designed to be **verifiable** end-to-end: you can lint it, evaluate it (static-only), validate its manifest, and compile it to a runtime target.
 
 ## When to Use
 
-- Testing that skills load and respond correctly
-- Verifying your workspace configuration after setup
-- As a template base for building a real skill
+- You need a minimal, type-declared skill skeleton that passes the effector toolchain
+- You want a known-good baseline before adding real permissions and prerequisites
+- You are building a new skill and want a clean structure to extend
 
 ## When NOT to Use
 
-- In production workflows (replace with a real skill)
-- When you need external API access (add requirements first)
+- As-is in production workflows (replace the placeholder commands with real ones)
+- When you need network/filesystem/subprocess access (declare permissions in \`effector.toml\` first)
 
 ## Setup
 
@@ -45,24 +51,24 @@ No external tools or API keys required.
 ### Installation
 
 \`\`\`bash
-# Install from ClawHub
-clawhub install ${name}
-
-# Or install locally
-cp -r . ~/.openclaw/workspace/skills/${name}/
+# Golden path (local)
+npx @effectorhq/skill-lint SKILL.md
+npx @effectorhq/skill-eval . --static-only
+npx effector-core validate .
+npx effector-core compile . -t mcp
 \`\`\`
 
 ## Commands
 
 ### \`echo\`
 
-Repeats the user's input with a timestamp.
+Echo back user input as plain text.
 
 **Example:**
 
 \`\`\`
 User: "Say hello"
-Agent: [${name}] hello (at 2024-01-15T10:30:00Z)
+Agent: hello
 \`\`\`
 
 ### \`status\`
@@ -79,12 +85,18 @@ Agent: ${name} v0.1.0 is active.
 ### Example 1: Basic Echo
 
 User: "Say hello"
-Agent uses the echo command to respond: "[${name}] hello (at <timestamp>)"
+
+\`\`\`
+hello
+\`\`\`
 
 ### Example 2: Health Check
 
 User: "Is ${name} working?"
-Agent runs the status command: "${name} v0.1.0 is active."
+
+\`\`\`
+${name} v0.1.0 is active.
+\`\`\`
 
 ## Notes
 
@@ -96,7 +108,6 @@ Agent runs the status command: "${name} v0.1.0 is active."
     'README.md': `# ${titleName}
 
 [![CI](https://github.com/effectorHQ/${name}/actions/workflows/ci.yml/badge.svg)](https://github.com/effectorHQ/${name}/actions)
-[![ClawHub](https://img.shields.io/badge/publish%20to-ClawHub-E03E3E)](https://clawhub.com)
 [![Effector Type: Skill](https://img.shields.io/badge/effector-skill-blue)](https://github.com/effectorHQ/effector-spec)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
@@ -105,23 +116,16 @@ An [Effector](https://github.com/effectorHQ/effector-spec) skill that echoes use
 ## Quick Start
 
 \`\`\`bash
-# Install from ClawHub
-clawhub install ${name}
-
-# Or install locally
-cp -r . ~/.openclaw/workspace/skills/${name}/
+npx @effectorhq/skill-lint SKILL.md
+npx @effectorhq/skill-eval . --static-only
+npx effector-core validate .
+npx effector-core compile . -t mcp
 \`\`\`
 
 ## Validation
 
 \`\`\`bash
 npx @effectorhq/skill-lint SKILL.md
-\`\`\`
-
-## Publishing
-
-\`\`\`bash
-clawhub publish
 \`\`\`
 
 ## Contributing

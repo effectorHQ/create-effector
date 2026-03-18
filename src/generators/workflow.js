@@ -17,7 +17,7 @@ name: ${name}
 description: "Automate a prepare-execute-notify pipeline"
 version: "0.1.0"
 
-# Variables — override at runtime with \`openclaw pipeline run ${name} --set KEY=VALUE\`
+# Variables — override at runtime via your runner (e.g. env vars or CLI flags)
 variables:
   ENVIRONMENT: "staging"
   NOTIFY_CHANNEL: "#general"
@@ -74,14 +74,8 @@ An [Effector](https://github.com/effectorHQ/effector-spec) workflow that automat
 ## Usage
 
 \`\`\`bash
-# Deploy the pipeline
-openclaw pipeline deploy pipeline.yml
-
-# Run it
-openclaw pipeline run ${name}
-
-# Run with overrides
-openclaw pipeline run ${name} --set ENVIRONMENT=production --set NOTIFY_CHANNEL="#ops"
+# Provide a pipeline runner that understands this format,
+# or compile it to your target runtime using the effector toolchain.
 \`\`\`
 
 ## Pipeline Steps

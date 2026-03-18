@@ -9,13 +9,13 @@ const TYPES = [
   { value: 'extension', label: 'Extension',  desc: 'TypeScript plugin hooking into the runtime SDK' },
   { value: 'workflow',  label: 'Workflow',   desc: 'Multi-step pipeline chaining skills (Lobster)' },
   { value: 'workspace', label: 'Workspace',  desc: 'Agent persona bundle (SOUL.md, AGENTS.md, TOOLS.md)' },
-  { value: 'bridge',    label: 'Bridge',     desc: 'Cross-runtime adapter (e.g., OpenClaw → MCP)' },
+  { value: 'bridge',    label: 'Bridge',     desc: 'Cross-runtime adapter (e.g., manifest → MCP tool)' },
   { value: 'prompt',    label: 'Prompt',     desc: 'Reusable prompt template with variables' },
 ];
 
 const RUNTIMES = [
-  { value: 'openclaw',          label: 'OpenClaw',          desc: 'The proactive AI assistant (default)' },
-  { value: 'mcp',               label: 'MCP',               desc: 'Model Context Protocol (Claude, Cursor, etc.)' },
+  { value: 'mcp',               label: 'MCP',               desc: 'Model Context Protocol (Claude, Cursor, etc.) (default)' },
+  { value: 'openclaw',          label: 'openclaw (legacy)', desc: 'Legacy runtime binding (kept for compatibility)' },
   { value: 'claude-agent-sdk',  label: 'Claude Agent SDK',  desc: 'Anthropic Claude Agent SDK' },
   { value: 'generic',           label: 'Generic',           desc: 'Runtime-agnostic (execute/validate/describe)' },
 ];
@@ -70,7 +70,7 @@ export async function interactivePrompt(initialName) {
     const runtimeInput = await ask(rl, '\n  Runtime (1-4 or name) [1]: ');
     let runtime;
     if (!runtimeInput.trim()) {
-      runtime = 'openclaw';
+      runtime = 'mcp';
     } else {
       const rtIdx = parseInt(runtimeInput, 10);
       if (rtIdx >= 1 && rtIdx <= 4) {
