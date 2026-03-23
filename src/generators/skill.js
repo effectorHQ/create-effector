@@ -109,7 +109,6 @@ ${name} v0.1.0 is active.
 
 [![CI](https://github.com/effectorHQ/${name}/actions/workflows/ci.yml/badge.svg)](https://github.com/effectorHQ/${name}/actions)
 [![Effector Type: Skill](https://img.shields.io/badge/effector-skill-blue)](https://github.com/effectorHQ/effector-spec)
-[![License: Apache 2.0](https://img.shields.io/badge/license-Apache-2.0-green.svg)](./LICENSE)
 
 An [Effector](https://github.com/effectorHQ/effector-spec) skill that echoes user input with metadata. Use as a starting point for building real skills.
 
@@ -133,7 +132,7 @@ npx @effectorhq/skill-lint SKILL.md
 PRs welcome! See [CONTRIBUTING.md](https://github.com/effectorHQ/.github/blob/main/CONTRIBUTING.md).
 
 ## License
-This project is currently licensed under the Apache 2.0 License 。
+This project is currently licensed under the [Apache License, Version 2.0](./LICENSE.md) 。
 `,
   };
 }

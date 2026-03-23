@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@effectorhq/create-effector.svg)](https://www.npmjs.com/package/@effectorhq/create-effector)
 [![CI](https://github.com/effectorHQ/create-effector/actions/workflows/test.yml/badge.svg)](https://github.com/effectorHQ/create-effector/actions/workflows/test.yml)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org/)
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache-2.0-yellow.svg)](LICENSE)
+
 [![Effector Spec](https://img.shields.io/badge/spec-0.2.0-blue)](https://github.com/effectorHQ/effector-spec)
 
 **[中文文档 →](./README.zh.md)**
@@ -33,7 +33,7 @@ See the published package on npm: **https://www.npmjs.com/package/@effectorhq/cr
 
 ## What It Does
 
-Generates the correct project structure for any Effector type — manifest, entry files, CI, README, LICENSE — so you can start building immediately instead of copying boilerplate.
+Generates the correct project structure for any Effector type — manifest, entry files, CI, README, LICENSE.md — so you can start building immediately instead of copying boilerplate.
 
 ## Quick Start
 
@@ -84,7 +84,7 @@ my-skill/
 ├── effector.toml      # Effector manifest
 ├── SKILL.md           # Skill instructions (entry file)
 ├── README.md
-├── LICENSE
+├── LICENSE.md
 ├── CHANGELOG.md
 ├── .gitignore
 └── .github/workflows/ci.yml
@@ -99,7 +99,7 @@ my-extension/
 ├── package.json       # npm package
 ├── tsconfig.json
 ├── README.md
-├── LICENSE
+├── LICENSE.md
 ├── CHANGELOG.md
 ├── .gitignore
 └── .github/workflows/ci.yml
@@ -112,7 +112,7 @@ my-workflow/
 ├── effector.toml
 ├── pipeline.yml       # Lobster pipeline definition
 ├── README.md
-├── LICENSE
+├── LICENSE.md
 ├── CHANGELOG.md
 ├── .gitignore
 └── .github/workflows/ci.yml
@@ -129,7 +129,7 @@ my-workspace/
 ├── IDENTITY.md        # Name, role, branding
 ├── HEARTBEAT.md       # Health monitoring
 ├── README.md
-├── LICENSE
+├── LICENSE.md
 ├── CHANGELOG.md
 ├── .gitignore
 └── .github/workflows/ci.yml
@@ -143,7 +143,7 @@ my-bridge/
 ├── src/adapter.js     # Bridge adapter
 ├── package.json
 ├── README.md
-├── LICENSE
+├── LICENSE.md
 ├── CHANGELOG.md
 ├── .gitignore
 └── .github/workflows/ci.yml
@@ -156,7 +156,7 @@ my-prompt/
 ├── effector.toml
 ├── prompt.md          # Prompt template with variables
 ├── README.md
-├── LICENSE
+├── LICENSE.md
 ├── CHANGELOG.md
 ├── .gitignore
 └── .github/workflows/ci.yml
@@ -178,7 +178,7 @@ my-prompt/
 1. Parses arguments (or runs interactive prompts)
 2. Generates `effector.toml` manifest with type-appropriate defaults
 3. Generates entry files specific to the Effector type
-4. Generates common files (LICENSE, CHANGELOG, .gitignore, CI)
+4. Generates common files (LICENSE.md, CHANGELOG, .gitignore, CI)
 5. Initializes a git repository
 
 No network requests. No dependencies to install. Everything runs with Node.js built-ins.
@@ -200,6 +200,5 @@ PRs welcome! See [CONTRIBUTING.md](https://github.com/effectorHQ/.github/blob/ma
 
 ## License
 
-
-This project is currently licensed under the Apache 2.0 License 。
+This project is currently licensed under the [Apache License, Version 2.0](LICENSE.md) 。
 

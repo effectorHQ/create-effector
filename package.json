@@ -1,7 +1,7 @@
 {
   "name": "@effectorhq/create-effector",
   "version": "1.0.0",
-  "description": "Scaffold a new Effector project — skills, extensions, workflows, and more",
+  "description": "Scaffold a new Effector project \u2014 skills, extensions, workflows, and more",
   "bin": {
     "create-effector": "./bin/create-effector.js"
   },
@@ -36,7 +36,7 @@
   "files": [
     "bin/",
     "src/",
-    "LICENSE",
+    "LICENSE.md",
     "README.md"
   ]
 }

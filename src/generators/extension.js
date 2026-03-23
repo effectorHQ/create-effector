@@ -107,7 +107,6 @@ export function register(api: RuntimePluginApi) {
 [![CI](https://github.com/effectorHQ/${name}/actions/workflows/ci.yml/badge.svg)](https://github.com/effectorHQ/${name}/actions)
 [![npm](https://img.shields.io/npm/v/@effectorhq/${name}.svg)](https://www.npmjs.com/package/@effectorhq/${name})
 [![Effector Type: Extension](https://img.shields.io/badge/effector-extension-purple)](https://github.com/effectorHQ/effector-spec)
-[![License: Apache 2.0](https://img.shields.io/badge/license-Apache-2.0-green.svg)](./LICENSE)
 
 An [Effector](https://github.com/effectorHQ/effector-spec) extension that responds with timestamped greetings. Use as a starting point for building real extensions.
 
@@ -127,7 +126,7 @@ npm test
 
 ## License
 
-This project is currently licensed under the Apache 2.0 License 。
+This project is currently licensed under the [Apache License, Version 2.0](./LICENSE.md) 。
 `,
   };
 }

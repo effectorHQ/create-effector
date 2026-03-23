@@ -41,7 +41,7 @@ test('golden path: create-effector generates valid structure', async () => {
     assert.ok(files.includes('SKILL.md'), 'has SKILL.md');
     assert.ok(files.includes('effector.toml'), 'has effector.toml');
     assert.ok(files.includes('README.md'), 'has README.md');
-    assert.ok(files.includes('LICENSE'), 'has LICENSE');
+    assert.ok(files.includes('LICENSE.md'), 'has LICENSE.md');
     assert.ok(files.includes('CHANGELOG.md'), 'has CHANGELOG.md');
 
     // effector.toml has [effector.interface]

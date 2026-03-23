@@ -129,7 +129,7 @@ function generateCommon({ name, type, runtime }) {
 
   return {
     'effector.toml': generateManifest({ name, type, runtime }),
-    'LICENSE': scaffoldLicenseText(year),
+    'LICENSE.md': scaffoldLicenseMd(year),
     'CHANGELOG.md': `# Changelog
 
 ## [0.1.0] — ${year}
@@ -148,13 +148,20 @@ dist/
   };
 }
 
-function scaffoldLicenseText(year) {
-  const licenseTemplate = readFileSync(join(__dirname, '..', 'LICENSE'), 'utf-8');
-  // Scaffolders historically updated the copyright year dynamically.
-  return licenseTemplate.replace(
+function scaffoldLicenseMd(year) {
+  const raw = readFileSync(join(__dirname, '..', 'LICENSE.md'), 'utf-8');
+  const fenceOpen = '```text\n';
+  const openIdx = raw.indexOf(fenceOpen);
+  const closeIdx = raw.lastIndexOf('\n```');
+  if (openIdx === -1 || closeIdx <= openIdx) {
+    return raw.replace(/^(\s*Copyright\s*\(c\)\s*)\d{4}/m, `$1${year}`);
+  }
+  const inner = raw.slice(openIdx + fenceOpen.length, closeIdx);
+  const updatedInner = inner.replace(
     /^(\s*Copyright\s*\(c\)\s*)\d{4}/m,
     `$1${year}`,
   );
+  return raw.slice(0, openIdx + fenceOpen.length) + updatedInner + raw.slice(closeIdx);
 }
 
 function generateManifest({ name, type, runtime }) {
