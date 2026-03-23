@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@effectorhq/create-effector.svg)](https://www.npmjs.com/package/@effectorhq/create-effector)
 [![CI](https://github.com/effectorHQ/create-effector/actions/workflows/test.yml/badge.svg)](https://github.com/effectorHQ/create-effector/actions/workflows/test.yml)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache-2.0-yellow.svg)](LICENSE)
 [![Effector Spec](https://img.shields.io/badge/spec-0.2.0-blue)](https://github.com/effectorHQ/effector-spec)
 
 **[中文文档 →](./README.zh.md)**
@@ -200,4 +200,6 @@ PRs welcome! See [CONTRIBUTING.md](https://github.com/effectorHQ/.github/blob/ma
 
 ## License
 
-MIT © 2026 effectorHQ Contributors
+
+This project is currently licensed under the Apache 2.0 License 。
+

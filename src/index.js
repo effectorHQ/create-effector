@@ -5,9 +5,10 @@
  * Zero dependencies — uses Node.js built-ins only.
  */
 
-import { mkdirSync, writeFileSync, existsSync, chmodSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { mkdirSync, writeFileSync, existsSync, chmodSync, readFileSync } from 'node:fs';
+import { join, resolve, dirname } from 'node:path';
 import { execSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
 import { generateSkill } from './generators/skill.js';
 import { generateExtension } from './generators/extension.js';
@@ -15,6 +16,8 @@ import { generateWorkflow } from './generators/workflow.js';
 import { generateWorkspace } from './generators/workspace.js';
 import { generateBridge } from './generators/bridge.js';
 import { generatePrompt } from './generators/prompt.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const GENERATORS = {
   skill: generateSkill,
@@ -126,28 +129,7 @@ function generateCommon({ name, type, runtime }) {
 
   return {
     'effector.toml': generateManifest({ name, type, runtime }),
-    'LICENSE': `MIT License
-
-Copyright (c) ${year} effectorHQ Contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-`,
+    'LICENSE': scaffoldLicenseText(year),
     'CHANGELOG.md': `# Changelog
 
 ## [0.1.0] — ${year}
@@ -166,6 +148,15 @@ dist/
   };
 }
 
+function scaffoldLicenseText(year) {
+  const licenseTemplate = readFileSync(join(__dirname, '..', 'LICENSE'), 'utf-8');
+  // Scaffolders historically updated the copyright year dynamically.
+  return licenseTemplate.replace(
+    /^(\s*Copyright\s*\(c\)\s*)\d{4}/m,
+    `$1${year}`,
+  );
+}
+
 function generateManifest({ name, type, runtime }) {
   const runtimeBlock = runtime === 'openclaw'
     ? generateOpenClawBinding(type)
@@ -180,7 +171,7 @@ name = "${name}"
 version = "0.1.0"
 type = "${type}"
 description = "A starter ${type} effector. Replace this description with what yours does."
-license = "MIT"
+license = "Apache-2.0"
 emoji = "${typeEmoji(type)}"
 tags = []
 authors = []

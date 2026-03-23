@@ -134,7 +134,7 @@ If any configuration file is missing or unreadable, log a warning and fall back 
     'README.md': `# ${titleName}
 
 [![Effector Type: Workspace](https://img.shields.io/badge/effector-workspace-teal)](https://github.com/effectorHQ/effector-spec)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache-2.0-green.svg)](./LICENSE)
 
 An [Effector](https://github.com/effectorHQ/effector-spec) workspace that configures an AI agent for software development assistance.
 
@@ -161,7 +161,7 @@ Fork this workspace and edit the markdown files to match your needs. The Workspa
 
 ## License
 
-MIT © ${new Date().getFullYear()} effectorHQ Contributors
+This project is currently licensed under the Apache 2.0 License 。
 `,
   };
 }

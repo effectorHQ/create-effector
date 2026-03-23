@@ -107,7 +107,7 @@ if (process.argv[2] === 'serve') {
   },
   "keywords": ["effector", "effectorhq", "bridge", "mcp"],
   "author": "effectorHQ Contributors",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "engines": {
     "node": ">=18"
   }
@@ -119,7 +119,7 @@ if (process.argv[2] === 'serve') {
 [![CI](https://github.com/effectorHQ/${name}/actions/workflows/ci.yml/badge.svg)](https://github.com/effectorHQ/${name}/actions)
 [![npm](https://img.shields.io/npm/v/@effectorhq/${name}.svg)](https://www.npmjs.com/package/@effectorhq/${name})
 [![Effector Type: Bridge](https://img.shields.io/badge/effector-bridge-yellow)](https://github.com/effectorHQ/effector-spec)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache-2.0-green.svg)](./LICENSE)
 
 An [Effector](https://github.com/effectorHQ/effector-spec) bridge that connects runtimes via JSON-RPC over stdio. Use as a starting point for building real bridges.
 
@@ -140,7 +140,7 @@ Source Runtime → [${titleName}] → Target Runtime
 
 ## License
 
-MIT © ${new Date().getFullYear()} effectorHQ Contributors
+This project is currently licensed under the Apache 2.0 License 。
 `,
   };
 }

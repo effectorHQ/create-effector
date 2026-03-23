@@ -67,7 +67,7 @@ steps:
 [![CI](https://github.com/effectorHQ/${name}/actions/workflows/ci.yml/badge.svg)](https://github.com/effectorHQ/${name}/actions)
 [![Effector Type: Workflow](https://img.shields.io/badge/effector-workflow-orange)](https://github.com/effectorHQ/effector-spec)
 [![Lobster](https://img.shields.io/badge/powered%20by-Lobster-blue)](https://github.com/effectorHQ/docs)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache-2.0-green.svg)](./LICENSE)
 
 An [Effector](https://github.com/effectorHQ/effector-spec) workflow that automates a prepare-execute-notify pipeline.
 
@@ -96,7 +96,7 @@ Edit \`pipeline.yml\` to:
 
 ## License
 
-MIT © ${new Date().getFullYear()} effectorHQ Contributors
+This project is currently licensed under the Apache 2.0 License 。
 `,
   };
 }

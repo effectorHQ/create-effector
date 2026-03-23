@@ -50,7 +50,7 @@ Given the context above, provide a concise summary highlighting:
     'README.md': `# ${titleName}
 
 [![Effector Type: Prompt](https://img.shields.io/badge/effector-prompt-pink)](https://github.com/effectorHQ/effector-spec)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache-2.0-green.svg)](./LICENSE)
 
 An [Effector](https://github.com/effectorHQ/effector-spec) prompt template for generating concise content summaries.
 
@@ -70,7 +70,7 @@ Use the template variables syntax (\`{{variable}}\`) and resolve them in your ap
 
 ## License
 
-MIT © ${new Date().getFullYear()} effectorHQ Contributors
+This project is currently licensed under the Apache 2.0 License 。
 `,
   };
 }
