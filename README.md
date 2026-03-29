@@ -1,3 +1,10 @@
+> **📦 Consolidated.** This package is now part of [`effectorHQ/effector`](https://github.com/OpenClawHQ/effectorhq) → `cli/src/commands/init.js`.
+> All active development continues in the monorepo. This repository remains available for reference.
+>
+> Scaffold: `npx @effectorhq/cli init my-skill`
+
+---
+
 # create-effector
 
 [![npm version](https://img.shields.io/npm/v/@effectorhq/create-effector.svg)](https://www.npmjs.com/package/@effectorhq/create-effector)
